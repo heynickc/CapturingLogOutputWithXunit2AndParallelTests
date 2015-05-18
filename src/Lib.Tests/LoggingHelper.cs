@@ -7,6 +7,7 @@
     using Serilog;
     using Serilog.Context;
     using Serilog.Events;
+    using Serilog.Formatting.Display;
     using Xunit.Abstractions;
 
     internal static class LoggingHelper
@@ -35,7 +36,10 @@
             {
                 using(var writer = new StringWriter())
                 {
-                    logEvent.RenderMessage(writer);
+                    var formatter = new MessageTemplateTextFormatter(
+                        "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}", null);
+
+                    formatter.Format(logEvent, writer);
                     testOutputHelper.WriteLine(writer.ToString());
                 }
             });
