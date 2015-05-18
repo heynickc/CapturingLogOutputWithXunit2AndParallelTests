@@ -14,6 +14,8 @@
     {
         private static readonly Subject<LogEvent>  s_logEventSubject = new Subject<LogEvent>();
         private const string CaptureIdKey = "captureid";
+        private static MessageTemplateTextFormatter s_formatter = new MessageTemplateTextFormatter(
+                "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}", null);
 
         static LoggingHelper()
         {
@@ -36,10 +38,7 @@
             {
                 using(var writer = new StringWriter())
                 {
-                    var formatter = new MessageTemplateTextFormatter(
-                        "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}", null);
-
-                    formatter.Format(logEvent, writer);
+                    s_formatter.Format(logEvent, writer);
                     testOutputHelper.WriteLine(writer.ToString());
                 }
             });
