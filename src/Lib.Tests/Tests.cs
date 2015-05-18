@@ -1,7 +1,6 @@
 ﻿namespace Lib.Tests
 {
     using System;
-    using System.Threading;
     using Xunit;
     using Xunit.Abstractions;
 
