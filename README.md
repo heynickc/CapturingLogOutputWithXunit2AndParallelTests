@@ -15,7 +15,7 @@ Because logging is considered a cross-cutting concern, the _typical_ usage is to
     	private static readonly ILog s_logger = LogProvider.For<Foo>();
     }
 
-The issue here is that if this class is used in a concurrent way, the log output will be interleaved.
+The issue here is that if this class is used in a concurrent way, it's log output will be interleaved.
 
 ### Solution
 
