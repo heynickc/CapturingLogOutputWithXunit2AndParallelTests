@@ -6,13 +6,13 @@ xunit 2.x now enables parallel testing by default. According to the docs, using 
 
 The recommend approach is now to take a dependency on `ITestOutputHelper` on your test class.
 
-But what if the you are using a library with logging support, perhaps a 3rd party one, and you want to capture it's log output in your test output?
+But what if  you are using a library with logging support, perhaps a 3rd party one, and you want to capture it's log output in your test output?
 
 Because logging is considered a cross-cutting concern, the _typical_ usage is to declare a logger as a static shared resource in a class.
 
 	public class Foo
     {
-        private static readonly ILog s_logger = LogProvider.For<Foo>();
+    	private static readonly ILog s_logger = LogProvider.For<Foo>();
     }
 
 The issue here is that if this class is used in a concurrent way, the log output will be interleaved.
