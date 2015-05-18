@@ -18,7 +18,6 @@
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo
-                //Could this be nicer.
                 .Observers(observable => observable.Subscribe(logEvent => s_logEventSubject.OnNext(logEvent)))
                 .Enrich.FromLogContext()
                 .CreateLogger();
@@ -34,8 +33,6 @@
 
             var subscription = s_logEventSubject.Where(filter).Subscribe(logEvent =>
             {
-
-                //TODO nicer way to do the?
                 using(var writer = new StringWriter())
                 {
                     logEvent.RenderMessage(writer);

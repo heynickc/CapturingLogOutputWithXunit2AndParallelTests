@@ -20,6 +20,8 @@
                 var sut = new Foo();
 
                 sut.Bar();
+
+                // Check test output for log message.
             }
         }
     }

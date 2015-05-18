@@ -8,7 +8,7 @@
 
         public void Bar()
         {
-            s_logger.Info("Baz");
+            s_logger.Info("Baz is logged");
         }
     }
 }
