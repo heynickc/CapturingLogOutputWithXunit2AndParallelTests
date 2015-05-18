@@ -6,9 +6,9 @@
     {
         private static readonly ILog s_logger = LogProvider.For<Foo>();
 
-        public void Bar()
+        public void Bar(string message)
         {
-            s_logger.Info("Baz is logged");
+            s_logger.Info(message);
         }
     }
 }
