@@ -13,7 +13,7 @@
     internal static class LoggingHelper
     {
         private static readonly Subject<LogEvent>  s_logEventSubject = new Subject<LogEvent>();
-        private const string CaptureIdKey = "captureid";
+        private const string CaptureCorrelationIdKey = "CaptureCorrelationId";
         private static MessageTemplateTextFormatter s_formatter = new MessageTemplateTextFormatter(
                 "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}", null);
 
@@ -31,8 +31,8 @@
             var captureId = Guid.NewGuid();
 
             Func<LogEvent, bool> filter = logEvent => 
-                logEvent.Properties.ContainsKey(CaptureIdKey) &&
-                logEvent.Properties[CaptureIdKey].ToString() == captureId.ToString();
+                logEvent.Properties.ContainsKey(CaptureCorrelationIdKey) &&
+                logEvent.Properties[CaptureCorrelationIdKey].ToString() == captureId.ToString();
 
             var subscription = s_logEventSubject.Where(filter).Subscribe(logEvent =>
             {
@@ -42,7 +42,7 @@
                     testOutputHelper.WriteLine(writer.ToString());
                 }
             });
-            var pushProperty = LogContext.PushProperty(CaptureIdKey, captureId);
+            var pushProperty = LogContext.PushProperty(CaptureCorrelationIdKey, captureId);
 
             return new DisposableAction(() =>
             {
