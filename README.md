@@ -1,6 +1,6 @@
 # Capturing test specific log output when using xunit 2.x parallel testing
 
-xunit 2.x now enables parallel testing by default. According to the docs, using console to output messages is no longer viable:
+xunit 2.x now enables parallel testing by default. [According to the docs](https://xunit.github.io/docs/capturing-output.html), using console to output messages is no longer viable:
 
 > When xUnit.net v2 shipped with parallelization turned on by default, this output capture mechanism was no longer appropriate; it is impossible to know which of the many tests that could be running in parallel were responsible for writing to those shared resources. 
 
