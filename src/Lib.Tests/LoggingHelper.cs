@@ -14,7 +14,7 @@
     {
         private static readonly Subject<LogEvent>  s_logEventSubject = new Subject<LogEvent>();
         private const string CaptureCorrelationIdKey = "CaptureCorrelationId";
-        private static MessageTemplateTextFormatter s_formatter = new MessageTemplateTextFormatter(
+        private static readonly MessageTemplateTextFormatter s_formatter = new MessageTemplateTextFormatter(
                 "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}", null);
 
         static LoggingHelper()
